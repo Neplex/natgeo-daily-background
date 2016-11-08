@@ -8,9 +8,9 @@ To install it:
 - (re)connect your pc to internet,
 - set the img downloaded as your background.
 
-You can create a history by uncommenting this line:
+You can create a historic by uncommenting this line:
 ```bash
-cp $image_uri $history_folder$(date +%d-%m-%Y).jpg
+cp $image_uri $historic_folder$(date +%d-%m-%Y).jpg
 ```
 
 Dependency:

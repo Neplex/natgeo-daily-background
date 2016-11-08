@@ -1,7 +1,7 @@
 #!/bin/bash
 
 image_uri="/home/<username>/Images/natgeo.jpg"
-history_folder="/home/<username>/Images/natgeo/"
+historic_folder="/home/<username>/Images/natgeo/"
 
 # Get url of image of the day
 url=$(curl -s http://www.nationalgeographic.com/photography/_jcr_content/content/multilayout_8.promo-all.json | jq -r '.[0].leadMedia.url')
@@ -9,4 +9,4 @@ url=$(curl -s http://www.nationalgeographic.com/photography/_jcr_content/content
 wget $url -O $image_uri
 
 # Uncomment if you want a history
-cp $image_uri $history_folder$(date +%d-%m-%Y).jpg
+cp $image_uri $historic_folder$(date +%d-%m-%Y).jpg
