@@ -1,12 +1,23 @@
 #!/bin/bash
 
-image_uri="/home/<username>/Images/natgeo.jpg"
-historic_folder="/home/<username>/Images/natgeo/"
+image_uri="/home/<user>/Images/natgeo.jpg"
+historic_folder="/<user>/nicolas/Images/natgeo/"
 
-# Get url of image of the day
-url=$(curl -s http://www.nationalgeographic.com/photography/_jcr_content/content/multilayout_8.promo-all.json | jq -r '.[0].leadMedia.url')
-# Get image
-wget $url -O $image_uri
+historic_file=$historic_folder$(date +%d-%m-%Y).jpg
 
-# Uncomment if you want a history
-cp $image_uri $historic_folder$(date +%d-%m-%Y).jpg
+json_url="http://www.nationalgeographic.com/photography/_jcr_content/content/multilayout_8.promo-all.json"
+
+if [ ! -f $historic_file ]; then
+	# Get url of image of the day
+	json=$(curl -s $json_url)
+	url=$(echo $json | jq -r '.[0].leadMedia.url')
+	# Get image
+	wget $url -O $image_uri
+
+	# Uncomment if you want a history
+	#cp $image_uri $historic_file
+
+	title=$(echo $json | jq -r '.[0].page.title')
+	desc=$(echo $json | jq -r '.[0].page.abstract')
+	notify-send $title #$desc
+fi
