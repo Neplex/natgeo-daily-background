@@ -1,7 +1,7 @@
 #!/bin/bash
 
 image_uri="/home/<user>/Images/natgeo.jpg"
-historic_folder="/<user>/nicolas/Images/natgeo/"
+historic_folder="/home/<user>/Images/natgeo/"
 
 historic_file=$historic_folder$(date +%d-%m-%Y).jpg
 
@@ -19,5 +19,5 @@ if [ ! -f $historic_file ]; then
 
 	title=$(echo $json | jq -r '.[0].page.title')
 	desc=$(echo $json | jq -r '.[0].page.abstract')
-	notify-send $title #$desc
+	notify-send "$title" "$desc"
 fi
